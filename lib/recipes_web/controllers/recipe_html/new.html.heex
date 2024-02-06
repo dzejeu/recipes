@@ -1,0 +1,160 @@
+<div>
+  <form action="/recipes" method="POST" id="add-recipe" class="max-w-fit mx-auto">
+    <div class="grid grid-cols-4 gap-4">
+      <div class="mb-5">
+        <label
+          for="recipe_name"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Recipe name
+        </label>
+        <input
+          type="text"
+          id="recipe_name"
+          name="name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div class="mb-5">
+        <label
+          for="prep_time"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Prep time (min)
+        </label>
+        <input
+          type="text"
+          id="prep_time"
+          name="prep_time"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div class="mb-5">
+        <label for="cuisines" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Cuisine
+        </label>
+        <select
+          id="cuisines"
+          name="cuisine"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <%= for c <- @cuisines do %>
+            <option><%= c %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="mb-5">
+        <label for="meal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Meal
+        </label>
+        <select
+          id="meal"
+          name="meal"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option>breakfast</option>
+          <option>dinner</option>
+          <option>dessert</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="is_vegetarian"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Vegetarian
+        </label>
+        <select
+          id="is_vegetarian"
+          name="is_vegetarian"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option>yes</option>
+          <option>no</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="nearby_shop_only"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Available at nearby shop
+        </label>
+        <select
+          id="nearby_shop_only"
+          name="nearby_shop_only"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option>yes</option>
+          <option>no</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="digestion"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Digestion (1-easy)
+        </label>
+        <select
+          id="digestion"
+          name="digestion"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <%= for n <- 1..5 do %>
+            <option><%= n %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="prep_complexity"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Prep complexity (1-easy)
+        </label>
+        <select
+          id="prep_complexity"
+          name="prep_complexity"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <%= for n <- 1..5 do %>
+            <option><%= n %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="ingredients_complexity"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Ingredients complexity (1-easy)
+        </label>
+        <select
+          id="ingredients_complexity"
+          name="ingredients_complexity"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <%= for n <- 1..5 do %>
+            <option><%= n %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <div class="pt-4 pb-4"></div>
+
+    <button
+      type="submit"
+      form="add-recipe"
+      class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+    >
+      Add recipe
+    </button>
+  </form>
+</div>

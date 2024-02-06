@@ -1,0 +1,117 @@
+<div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full table-auto">
+      <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        Random breakfast for today
+        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+          To get another random pick just refresh the page
+        </p>
+      </caption>
+      <thead>
+        <tr class="flex-auto bg-slate-300">
+          <th class="text-center">Name</th>
+          <th class="text-center">Prep time (min)</th>
+          <th class="text-center">Cuisine</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd:bg-slate-400 even:bg-slate-500">
+          <td class="text-center"><%= @random_breakfast.name %></td>
+          <td class="text-center"><%= @random_breakfast.prep_time %></td>
+          <td class="text-center"><%= @random_breakfast.cuisine %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pb-10"></div>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full table-auto">
+      <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        Random dinner for today
+        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+          To get another random pick just refresh the page
+        </p>
+      </caption>
+      <thead>
+        <tr class="flex-auto bg-slate-300">
+          <th class="text-center">Name</th>
+          <th class="text-center">Prep time (min)</th>
+          <th class="text-center">Cuisine</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd:bg-slate-400 even:bg-slate-500">
+          <td class="text-center"><%= @random_dinner.name %></td>
+          <td class="text-center"><%= @random_dinner.prep_time %></td>
+          <td class="text-center"><%= @random_dinner.cuisine %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pb-10"></div>
+
+  <div class="grid grid-cols-4 gap-4">
+    <button
+      onclick="window.location.href='/recipes/new';"
+      type="button"
+      class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+    >
+      Add recipe
+    </button>
+    <button
+      onclick="window.location.href='/recipes/find';"
+      type="button"
+      class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+    >
+      Find recipe
+    </button>
+  </div>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full table-auto">
+      <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        All recipes
+        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+          Browse a list of recipes, find easiest or hardest, filter by cuisine or taste.
+        </p>
+      </caption>
+      <thead>
+        <tr class="flex-auto bg-slate-300">
+          <th class="text-center">Id</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Prep time (min)</th>
+          <th class="text-center">Cuisine</th>
+          <th class="text-center">Meal</th>
+          <th class="text-center">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for {r, idx} <- @recipes |> Enum.with_index do %>
+          <tr class="odd:bg-slate-400 even:bg-slate-500">
+            <td class="pl-1 text-center"><%= idx + 1 %></td>
+            <td class="text-center"><%= r.name %></td>
+            <td class="text-center"><%= r.prep_time %></td>
+            <td class="text-center"><%= r.cuisine %></td>
+            <td class="text-center"><%= r.meal %></td>
+            <td>
+              <div class="pt-3 pb-1 pl-2">
+                <form action="/recipes/delete" method="get">
+                  <input type="hidden" value={r.id} name="recipe_id" />
+                  <button
+                    type="submit"
+                    class="pt-2 text-xs py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  >
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
